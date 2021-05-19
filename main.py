@@ -25,7 +25,7 @@ BG_COLOR = (28, 170, 156)
 LINE_COLOR = (23, 145, 135)
 CROSS_COLOR_2 = (239, 231, 200)
 CROSS_COLOR_1 = (66, 66, 66)
-
+BLACK=(0,0,0)
 # ------
 # ECRAN
 # ------
@@ -103,12 +103,12 @@ def check_win(player):
 
 	# asc diagonal win check
 	if (board[2][0] == 1 or board[2][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[0][2] == 1 or board[0][2] == 2):
-		draw_asc_diagonal()
+		draw_asc_diagonal_1()
 		return True
 
 	# desc diagonal win chek
 	if(board[0][0] == 1 or board[0][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[2][2] == 1 or board[2][2] == 2):
-		draw_desc_diagonal()
+		draw_desc_diagonal_1()
 		return True
 
 	return False
@@ -123,13 +123,13 @@ def draw_horizontal_winning_line(row):
 
 	pygame.draw.line( screen, RED, (15, posY), (WIDTH - 15, posY), WIN_LINE_WIDTH )
 
-def draw_asc_diagonal():
+def draw_asc_diagonal_1():
 
-	pygame.draw.line( screen, RED, (15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH )
+	pygame.draw.line( screen, RED, (15, HEIGHT - 15), (WIDTH/2 - 15, 15), WIN_LINE_WIDTH )
 
-def draw_desc_diagonal():
+def draw_desc_diagonal_1():
 
-	pygame.draw.line( screen, RED, (15, 15), (WIDTH - 15, HEIGHT - 15), WIN_LINE_WIDTH )
+	pygame.draw.line( screen, RED, (15, 15), (WIDTH/2 - 15, HEIGHT - 15), WIN_LINE_WIDTH )
 
 
 
