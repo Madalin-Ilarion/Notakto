@@ -131,6 +131,13 @@ def draw_desc_diagonal_1():
 
 	pygame.draw.line( screen, RED, (15, 15), (WIDTH/2 - 15, HEIGHT - 15), WIN_LINE_WIDTH )
 
+def draw_asc_diagonal_2():
+
+	pygame.draw.line(screen, RED, (WIDTH/2, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
+
+def draw_desc_diagonal_2():
+
+	pygame.draw.line( screen, RED, (15+3*SQUARE_SIZE, 15), (WIDTH - 15, HEIGHT - 15), WIN_LINE_WIDTH )
 
 
 
@@ -185,4 +192,3 @@ while True:
 
 	pygame.display.update()
 
-#holla
