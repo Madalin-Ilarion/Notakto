@@ -185,4 +185,4 @@ while True:
 
 	pygame.display.update()
 
-#ceva
+#holla
