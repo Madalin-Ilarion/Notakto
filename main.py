@@ -98,7 +98,7 @@ def check_win(player):
 	# horizontal win check
 	for row in range(BOARD_ROWS):
 		if (board[row][0] == 1 or board[row][0] == 2) and (board[row][1] == 1 or board[row][1] == 2) and (board[row][2] == 1 or board[row][2] == 2 ):
-			draw_horizontal_winning_line(row)
+			draw_horizontal_winning_line_1(row)
 			return True
 
 	# asc diagonal win check
