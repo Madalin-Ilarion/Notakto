@@ -8,7 +8,7 @@ pygame.init()
 # ---------
 # CONSTANTE
 # ---------
-WIDTH = 600
+WIDTH = 1200
 HEIGHT = 600
 LINE_WIDTH = 15
 WIN_LINE_WIDTH = 15
