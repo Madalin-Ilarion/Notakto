@@ -118,10 +118,10 @@ def draw_vertical_winning_line(col):
 
 	pygame.draw.line( screen, RED, (posX, 15), (posX, HEIGHT - 15), LINE_WIDTH )
 
-def draw_horizontal_winning_line(row):
+def draw_horizontal_winning_line_1(row):
 	posY = row * SQUARE_SIZE + SQUARE_SIZE//2
 
-	pygame.draw.line( screen, RED, (15, posY), (WIDTH - 15, posY), WIN_LINE_WIDTH )
+	pygame.draw.line( screen, RED, (15, posY), (WIDTH/2 - 15, posY), WIN_LINE_WIDTH )
 
 def draw_asc_diagonal_1():
 
