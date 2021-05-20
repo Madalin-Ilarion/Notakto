@@ -13,7 +13,7 @@ HEIGHT = 600
 LINE_WIDTH = 15
 WIN_LINE_WIDTH = 15
 BOARD_ROWS = 3
-BOARD_COLS = 3
+BOARD_COLS = 6
 SQUARE_SIZE = 200
 CIRCLE_RADIUS = 60
 CIRCLE_WIDTH = 15
@@ -89,26 +89,51 @@ def is_board_full():
 	return True
 
 def check_win(player):
-	# vertical win check
-	for col in range(BOARD_COLS):
+	# vertical win check_1
+	for col in range(BOARD_COLS-3):
 		if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (board[2][col] == 1 or board[2][col] == 2 ) :
 			draw_vertical_winning_line(col )
 			return True
 
-	# horizontal win check
+	# horizontal win check_1
 	for row in range(BOARD_ROWS):
 		if (board[row][0] == 1 or board[row][0] == 2) and (board[row][1] == 1 or board[row][1] == 2) and (board[row][2] == 1 or board[row][2] == 2 ):
 			draw_horizontal_winning_line_1(row)
 			return True
 
-	# asc diagonal win check
+	# asc diagonal win check_1
 	if (board[2][0] == 1 or board[2][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[0][2] == 1 or board[0][2] == 2):
 		draw_asc_diagonal_1()
 		return True
 
-	# desc diagonal win chek
+	# desc diagonal win chek_1
 	if(board[0][0] == 1 or board[0][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[2][2] == 1 or board[2][2] == 2):
 		draw_desc_diagonal_1()
+		return True
+	# vertical win check_2
+	for col in range(3, BOARD_COLS):
+		if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
+				board[2][col] == 1 or board[2][col] == 2):
+			draw_vertical_winning_line(col)
+			return True
+
+	# horizontal win check_2
+	for row in range(BOARD_ROWS):
+		if (board[row][3] == 1 or board[row][3] == 2) and (board[row][4] == 1 or board[row][4] == 2) and (
+				board[row][5] == 1 or board[row][5] == 2):
+			draw_horizontal_winning_line_2(row)
+			return True
+
+		# asc diagonal win check_2
+	if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
+			board[0][5] == 1 or board[0][5] == 2):
+		draw_asc_diagonal_2()
+		return True
+
+	# desc diagonal win chek_2
+	if (board[0][3] == 1 or board[0][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
+			board[2][5] == 1 or board[2][5] == 2):
+		draw_desc_diagonal_2()
 		return True
 
 	return False
@@ -123,6 +148,10 @@ def draw_horizontal_winning_line_1(row):
 
 	pygame.draw.line( screen, RED, (15, posY), (WIDTH/2 - 15, posY), WIN_LINE_WIDTH )
 
+def draw_horizontal_winning_line_2(row):
+	posY = row * SQUARE_SIZE + SQUARE_SIZE//2
+
+	pygame.draw.line( screen, RED, (WIDTH/2+15, posY), (WIDTH - 15, posY), WIN_LINE_WIDTH )
 def draw_asc_diagonal_1():
 
 	pygame.draw.line( screen, RED, (15, HEIGHT - 15), (WIDTH/2 - 15, 15), WIN_LINE_WIDTH )
