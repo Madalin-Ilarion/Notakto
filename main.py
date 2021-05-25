@@ -207,8 +207,17 @@ def check_win():
 					draw_horizontal_winning_line_2(row)
 					return True
 
-			# asc diagonal win check_2
-			if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (board[0][5] == 1 or board
+				# asc diagonal win check_2
+				if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
+						board[0][5] == 1 or board[0][5] == 2):
+					draw_asc_diagonal_2()
+					return True
+
+				# desc diagonal win chek_2
+				if (board[0][3] == 1 or board[0][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
+						board[2][5] == 1 or board[2][5] == 2):
+					draw_desc_diagonal_2()
+					return True
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			# vertical win check_2
 	for col in range(3, BOARD_COLS):
