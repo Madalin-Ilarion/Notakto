@@ -92,8 +92,7 @@ def check_win():
 	# CONSTRUIRE LEGATURA DINTRE TABLA 1 CATRE TABLA 2 PENTRU LINIILE VERTICALE ALE TABLEI 1
 	# vertical win check_1
 	for col in range(BOARD_COLS - 3):
-		if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
-				board[2][col] == 1 or board[2][col] == 2):
+		if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (board[2][col] == 1 or board[2][col] == 2):
 			draw_vertical_winning_line(col)
 			if col == 0:
 				board[0][1] = board[0][2] = board[1][1] = board[1][2] = board[2][1] = board[2][2] = 3
@@ -103,35 +102,63 @@ def check_win():
 				board[0][0] = board[0][1] = board[1][0] = board[1][1] = board[2][0] = board[2][1] = 3
 			# vertical win check_2
 			for col in range(3, BOARD_COLS):
-				if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
-						board[2][col] == 1 or board[2][col] == 2):
+				if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (board[2][col] == 1 or board[2][col] == 2):
 					draw_vertical_winning_line(col)
 					return True
 
 			# horizontal win check_2
 			for row in range(BOARD_ROWS):
-				if (board[row][3] == 1 or board[row][3] == 2) and (board[row][4] == 1 or board[row][4] == 2) and (
-						board[row][5] == 1 or board[row][5] == 2):
+				if (board[row][3] == 1 or board[row][3] == 2) and (board[row][4] == 1 or board[row][4] == 2) and (board[row][5] == 1 or board[row][5] == 2):
 					draw_horizontal_winning_line_2(row)
 					return True
 
 			# asc diagonal win check_2
-			if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
-					board[0][5] == 1 or board[0][5] == 2):
+			if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (board[0][5] == 1 or board[0][5] == 2):
 				draw_asc_diagonal_2()
 				return True
 
 			# desc diagonal win chek_2
-			if (board[0][3] == 1 or board[0][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
-					board[2][5] == 1 or board[2][5] == 2):
+			if (board[0][3] == 1 or board[0][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (board[2][5] == 1 or board[2][5] == 2):
 				draw_desc_diagonal_2()
 				return True
 
-	# horizontal win check_1
-	for row in range(BOARD_ROWS):
-		if (board[row][0] == 1 or board[row][0] == 2) and (board[row][1] == 1 or board[row][1] == 2) and (board[row][2] == 1 or board[row][2] == 2 ):
-			draw_horizontal_winning_line_1(row)
-			return True
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		# CONSTRUIRE LEGATURA DINTRE TABLA 1 CATRE TABLA 2 PENTRU LINIILE ORIZONTALE ALE TABLEI 1
+		# horizontal win check_1
+		for row in range(BOARD_ROWS):
+			if (board[row][0] == 1 or board[row][0] == 2) and (board[row][1] == 1 or board[row][1] == 2) and (
+					board[row][2] == 1 or board[row][2] == 2):
+				draw_horizontal_winning_line_1(row)
+				if row == 0:
+					board[1][0] = board[1][1] = board[1][2] = board[2][0] = board[2][1] = board[2][2] = 3
+				elif row == 1:
+					board[0][0] = board[0][1] = board[0][2] = board[2][0] = board[2][1] = board[2][2] = 3
+				elif row == 2:
+					board[0][0] = board[0][1] = board[0][2] = board[1][0] = board[1][1] = board[1][2] = 3
+				# vertical win check_2
+				for col in range(3, BOARD_COLS):
+					if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (board[2][col] == 1 or board[2][col] == 2):
+						draw_vertical_winning_line(col)
+						return True
+
+				# horizontal win check_2
+				for row in range(BOARD_ROWS):
+					if (board[row][3] == 1 or board[row][3] == 2) and (board[row][4] == 1 or board[row][4] == 2) and (board[row][5] == 1 or board[row][5] == 2):
+						draw_horizontal_winning_line_2(row)
+						return True
+
+				# asc diagonal win check_2
+				if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (board[0][5] == 1 or board[0][5] == 2):
+					draw_asc_diagonal_2()
+					return True
+
+				# desc diagonal win chek_2
+				if (board[0][3] == 1 or board[0][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (board[2][5] == 1 or board[2][5] == 2):
+					draw_desc_diagonal_2()
+					return True
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	# asc diagonal win check_1
 	if (board[2][0] == 1 or board[2][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[0][2] == 1 or board[0][2] == 2):
