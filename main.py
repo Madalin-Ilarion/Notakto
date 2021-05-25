@@ -190,11 +190,27 @@ def check_win():
 
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	# desc diagonal win chek_1
-	if(board[0][0] == 1 or board[0][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[2][2] == 1 or board[2][2] == 2):
-		draw_desc_diagonal_1()
-		return True
-	# vertical win check_2
+		# CONSTRUIRE LEGATURA DINTRE TABLA 1 CATRE TABLA 2 PENTRU DIAGONALA DESCENDENTA A TABLEI 1
+		# desc diagonal win chek_1
+		if (board[0][0] == 1 or board[0][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (board[2][2] == 1 or board[2][2] == 2):
+			draw_desc_diagonal_1()
+			board[0][1] = board[0][2] = board[1][0] = board[1][2] = board[2][0] = board[2][1] = 3
+			# vertical win check_2
+			for col in range(3, BOARD_COLS):
+				if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (board[2][col] == 1 or board[2][col] == 2):
+					draw_vertical_winning_line(col)
+					return True
+
+			# horizontal win check_2
+			for row in range(BOARD_ROWS):
+				if (board[row][3] == 1 or board[row][3] == 2) and (board[row][4] == 1 or board[row][4] == 2) and board[row][5] == 1 or board[row][5] == 2):
+					draw_horizontal_winning_line_2(row)
+					return True
+
+			# asc diagonal win check_2
+			if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (board[0][5] == 1 or board
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			# vertical win check_2
 	for col in range(3, BOARD_COLS):
 		if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
 				board[2][col] == 1 or board[2][col] == 2):
