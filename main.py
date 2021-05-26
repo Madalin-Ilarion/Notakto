@@ -322,15 +322,15 @@ def check_win():
                         draw_vertical_winning_line(col)
                         return True
         # //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        # CONSTRUIRE LEGATURA DINTRE TABLA 1 CATRE TABLA 2 PENTRU DIAGONALA ASCENDENTA A TABLEI 1
-        # asc diagonal win check_1
-        if (board[2][0] == 1 or board[2][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (
-                board[0][2] == 1 or board[0][2] == 2):
-            draw_asc_diagonal_1()
-            board[0][0] = board[0][1] = board[1][0] = board[1][2] = board[2][1] = board[2][2] = 3
+        # CONSTRUIRE LEGATURA DINTRE TABLA 2 CATRE TABLA 2 PENTRU DIAGONALA ASCENDENTA A TABLEI 2
+        # asc diagonal win check_2
+        if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
+                board[0][5] == 1 or board[0][5] == 2):
+            draw_asc_diagonal_2()
+            board[0][3] = board[0][4] = board[1][3] = board[1][5] = board[2][4] = board[2][5] = 3
 
-            # vertical win check_2
-            for col in range(3, BOARD_COLS):
+            # vertical win check_1
+            for col in range(BOARD_COLS-3):
                 if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
                         board[2][col] == 1 or board[2][col] == 2):
                     draw_vertical_winning_line(col)
@@ -338,21 +338,21 @@ def check_win():
 
             # horizontal win check_2
             for row in range(BOARD_ROWS):
-                if (board[row][3] == 1 or board[row][3] == 2) and (board[row][4] == 1 or board[row][4] == 2) and (
-                        board[row][5] == 1 or board[row][5] == 2):
+                if (board[row][0] == 1 or board[row][0] == 2) and (board[row][1] == 1 or board[row][1] == 2) and (
+                        board[row][2] == 1 or board[row][2] == 2):
                     draw_horizontal_winning_line_2(row)
                     return True
 
-            # asc diagonal win check_2
-            if (board[2][3] == 1 or board[2][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
-                    board[0][5] == 1 or board[0][5] == 2):
-                draw_asc_diagonal_2()
+            # asc diagonal win check_1
+            if (board[2][0] == 1 or board[2][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (
+                    board[0][2] == 1 or board[0][2] == 2):
+                draw_asc_diagonal_1()
                 return True
 
-            # desc diagonal win chek_2
-            if (board[0][3] == 1 or board[0][3] == 2) and (board[1][4] == 1 or board[1][4] == 2) and (
-                    board[2][5] == 1 or board[2][5] == 2):
-                draw_desc_diagonal_2()
+            # desc diagonal win chek_1
+            if (board[0][0] == 1 or board[0][0] == 2) and (board[1][1] == 1 or board[1][1] == 2) and (
+                    board[2][2] == 1 or board[2][2] == 2):
+                draw_desc_diagonal_1()
                 return True
 
         # //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -420,7 +420,7 @@ def draw_desc_diagonal_1():
 
 
 def draw_asc_diagonal_2():
-    pygame.draw.line(screen, RED, (WIDTH / 2, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
+    pygame.draw.line(screen, RED, (WIDTH / 2+15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
 
 
 def draw_desc_diagonal_2():
