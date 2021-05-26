@@ -121,6 +121,13 @@ def is_board_full():
 
     return True
 
+def is_table_full(table):
+    for row in range(BOARD_ROWS):
+        for col in range(BOARD_COLS // 2):
+            if board[row][col + table * (BOARD_COLS // 2 - 1)] == 0:
+                return False
+    return True
+
 
 def check_win():
     # CONSTRUIRE LEGATURA DINTRE TABLA 1 CATRE TABLA 2 PENTRU LINIILE VERTICALE ALE TABLEI 1
@@ -460,6 +467,20 @@ def restart():
             board[row][col] = 0
 
 
+def displayWinner(player):
+    for table in (0, 1):
+        if is_table_full(table) and table_winner_displayed[table] is not True:
+            table_winner_displayed[table] = True
+
+            mesaj = Arial.render(f'Player {player % 2 + 1} won', False, BLACK)
+            coords = [
+                (WIDTH / 2 - mesaj.get_width() - LINE_WIDTH, HEIGHT + 2 * LINE_WIDTH),
+                (WIDTH / 2 + LINE_WIDTH, HEIGHT + 2 * LINE_WIDTH)
+            ]
+            screen.blit(mesaj, coords[table])
+
+
+
 draw_lines()
 
 # ---------
@@ -467,6 +488,11 @@ draw_lines()
 # ---------
 player = 1
 game_over = False
+
+# Niciun jucator nu a castigat inca
+table_winner_displayed = [False, False]
+table1_winner = 0
+table2_winner = 0
 
 set_caption(player)
 
@@ -489,8 +515,11 @@ while True:
             if available_square(clicked_row, clicked_col):
 
                 mark_square(clicked_row, clicked_col, player)
+
                 if check_win():
                     game_over = True
+
+                displayWinner(player)
 
                 player = player % 2 + 1
 
@@ -502,6 +531,9 @@ while True:
             if event.key == pygame.K_r:
                 restart()
                 player = 1
+                table1_winner = 0
+                table2_winner = 0
+                table_winner_displayed = [False, False]
                 game_over = False
 
     pygame.display.update()
