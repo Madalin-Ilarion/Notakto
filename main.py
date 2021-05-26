@@ -4,6 +4,8 @@ import numpy as np
 
 # initializare pygame
 pygame.init()
+pygame.font.init()
+Arial = pygame.font.SysFont('Arial', 40)
 
 # ---------
 # CONSTANTE
@@ -53,6 +55,12 @@ def setup_displayer():
     pygame.draw.rect(screen, WHITE, (0, HEIGHT, WIDTH, SCREEN_HEIGHT - HEIGHT))
     # horizontal top border
     pygame.draw.line(screen, BLACK, (0, HEIGHT), (WIDTH, HEIGHT), LINE_WIDTH)
+
+    tabla1 = Arial.render('Tabla 1', False, BLACK)
+    screen.blit(tabla1, (LINE_WIDTH, HEIGHT + 2 * LINE_WIDTH))
+
+    tabla2 = Arial.render('Tabla 2', False, BLACK)
+    screen.blit(tabla2, (WIDTH - LINE_WIDTH - tabla2.get_width(), HEIGHT + 2 * LINE_WIDTH))
 
 
 def draw_lines():
