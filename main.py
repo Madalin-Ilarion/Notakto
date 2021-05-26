@@ -8,7 +8,9 @@ pygame.init()
 # ---------
 # CONSTANTE
 # ---------
-WIDTH = 1200
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 700
+WIDTH = SCREEN_WIDTH
 HEIGHT = 600
 LINE_WIDTH = 15
 WIN_LINE_WIDTH = 15
@@ -24,10 +26,12 @@ LINE_COLOR = (23, 145, 135)
 CROSS_COLOR_2 = (239, 231, 200)
 CROSS_COLOR_1 = (66, 66, 66)
 BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
 # ------
 # ECRAN
 # ------
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 screen.fill(BG_COLOR)
 
 # -------------
@@ -42,6 +46,14 @@ board = np.zeros((BOARD_ROWS, BOARD_COLS))
 
 def set_caption(player):
     pygame.display.set_caption(f'Notatko: Player {player}\'s turn')
+
+
+def setup_displayer():
+    # background
+    pygame.draw.rect(screen, WHITE, (0, HEIGHT, WIDTH, SCREEN_HEIGHT - HEIGHT))
+    # horizontal top border
+    pygame.draw.line(screen, BLACK, (0, HEIGHT), (WIDTH, HEIGHT), LINE_WIDTH)
+
 
 def draw_lines():
     # 1 orizontal
@@ -59,6 +71,8 @@ def draw_lines():
     pygame.draw.line(screen, LINE_COLOR, (4 * SQUARE_SIZE, 0), (4 * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
     # 5 vertical
     pygame.draw.line(screen, LINE_COLOR, (5 * SQUARE_SIZE, 0), (5 * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
+
+    setup_displayer()
 
 
 def draw_figures():
@@ -247,7 +261,7 @@ def check_win():
         # vertical win check_2
         for col in range(3, BOARD_COLS):
             if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
-                            board[2][col] == 1 or board[2][col] == 2):
+                    board[2][col] == 1 or board[2][col] == 2):
                 draw_vertical_winning_line(col)
                 if col == 3:
                     board[0][4] = board[0][5] = board[1][4] = board[1][5] = board[2][4] = board[2][5] = 3
@@ -266,8 +280,8 @@ def check_win():
                 # horizontal win check_1
                 for row in range(BOARD_ROWS):
                     if (board[row][0] == 1 or board[row][0] == 2) and (
-                                    board[row][1] == 1 or board[row][1] == 2) and (
-                                    board[row][2] == 1 or board[row][2] == 2):
+                            board[row][1] == 1 or board[row][1] == 2) and (
+                            board[row][2] == 1 or board[row][2] == 2):
                         draw_horizontal_winning_line_1(row)
                         return True
 
@@ -330,7 +344,7 @@ def check_win():
             board[0][3] = board[0][4] = board[1][3] = board[1][5] = board[2][4] = board[2][5] = 3
 
             # vertical win check_1
-            for col in range(BOARD_COLS-3):
+            for col in range(BOARD_COLS - 3):
                 if (board[0][col] == 1 or board[0][col] == 2) and (board[1][col] == 1 or board[1][col] == 2) and (
                         board[2][col] == 1 or board[2][col] == 2):
                     draw_vertical_winning_line(col)
@@ -420,7 +434,7 @@ def draw_desc_diagonal_1():
 
 
 def draw_asc_diagonal_2():
-    pygame.draw.line(screen, RED, (WIDTH / 2+15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
+    pygame.draw.line(screen, RED, (WIDTH / 2 + 15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
 
 
 def draw_desc_diagonal_2():
