@@ -28,7 +28,6 @@ BLACK = (0, 0, 0)
 # ECRAN
 # ------
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Notakto-Player-1')
 screen.fill(BG_COLOR)
 
 # -------------
@@ -40,6 +39,10 @@ board = np.zeros((BOARD_ROWS, BOARD_COLS))
 # ---------
 # FUNCTII
 # ---------
+
+def set_caption(player):
+    pygame.display.set_caption(f'Notatko: Player {player}\'s turn')
+
 def draw_lines():
     # 1 orizontal
     pygame.draw.line(screen, LINE_COLOR, (0, SQUARE_SIZE), (WIDTH, SQUARE_SIZE), LINE_WIDTH)
@@ -68,7 +71,6 @@ def draw_figures():
                 pygame.draw.line(screen, CROSS_COLOR_2, (col * SQUARE_SIZE + SPACE, row * SQUARE_SIZE + SPACE),
                                  (col * SQUARE_SIZE + SQUARE_SIZE - SPACE, row * SQUARE_SIZE + SQUARE_SIZE - SPACE),
                                  CROSS_WIDTH)
-                pygame.display.set_caption('Notakto-Player-2')
 
             elif board[row][col] == 2:
                 pygame.draw.line(screen, CROSS_COLOR_1,
@@ -77,7 +79,7 @@ def draw_figures():
                 pygame.draw.line(screen, CROSS_COLOR_1, (col * SQUARE_SIZE + SPACE, row * SQUARE_SIZE + SPACE),
                                  (col * SQUARE_SIZE + SQUARE_SIZE - SPACE, row * SQUARE_SIZE + SQUARE_SIZE - SPACE),
                                  CROSS_WIDTH)
-                pygame.display.set_caption('Notakto-Player-1')
+
 
 def mark_square(row, col, player):
     board[row][col] = player
@@ -442,6 +444,8 @@ draw_lines()
 player = 1
 game_over = False
 
+set_caption(player)
+
 # --------
 # PROGRAMUL PRINCIPAL
 # --------
@@ -465,6 +469,8 @@ while True:
                     game_over = True
 
                 player = player % 2 + 1
+
+                set_caption(player)
 
                 draw_figures()
 
