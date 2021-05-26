@@ -108,6 +108,8 @@ def mark_square(row, col, player):
 
 
 def available_square(row, col):
+    if row >= BOARD_ROWS or col >= BOARD_COLS:
+        return False
     return board[row][col] == 0
 
 
