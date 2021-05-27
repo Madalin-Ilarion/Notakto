@@ -121,10 +121,11 @@ def is_board_full():
 
     return True
 
+
 def is_table_full(table):
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS // 2):
-            if board[row][col + table * (BOARD_COLS // 2 - 1)] == 0:
+            if board[row][col + table * (BOARD_COLS // 2)] == 0:
                 return False
     return True
 
@@ -469,7 +470,7 @@ def restart():
 
 def displayWinner(player):
     for table in (0, 1):
-        if is_table_full(table) and table_winner_displayed[table] is not True:
+        if table_winner_displayed[table] is not True and (game_over or is_table_full(table)):
             table_winner_displayed[table] = True
 
             mesaj = Arial.render(f'Player {player % 2 + 1} won', False, BLACK)
