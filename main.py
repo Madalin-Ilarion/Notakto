@@ -115,15 +115,6 @@ def available_square(row, col):
     return board[row][col] == 0
 
 
-def is_board_full():
-    for row in range(BOARD_ROWS):
-        for col in range(BOARD_COLS):
-            if board[row][col] == 0:
-                return False
-
-    return True
-
-
 def is_table_full(table):
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS // 2):
@@ -483,7 +474,6 @@ def displayWinner(player):
             screen.blit(mesaj, coords[table])
 
 
-
 draw_lines()
 
 # ---------
@@ -494,8 +484,6 @@ game_over = False
 
 # Niciun jucator nu a castigat inca
 table_winner_displayed = [False, False]
-table1_winner = 0
-table2_winner = 0
 
 set_caption(player)
 
@@ -534,8 +522,6 @@ while True:
             if event.key == pygame.K_r:
                 restart()
                 player = 1
-                table1_winner = 0
-                table2_winner = 0
                 table_winner_displayed = [False, False]
                 game_over = False
 
