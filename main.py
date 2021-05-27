@@ -55,6 +55,8 @@ def setup_displayer():
     pygame.draw.rect(screen, WHITE, (0, HEIGHT, WIDTH, SCREEN_HEIGHT - HEIGHT))
     # horizontal top border
     pygame.draw.line(screen, BLACK, (0, HEIGHT), (WIDTH, HEIGHT), LINE_WIDTH)
+    # vertical separator
+    pygame.draw.line(screen, BLACK, (WIDTH / 2, HEIGHT), (WIDTH / 2, SCREEN_HEIGHT), LINE_WIDTH)
 
     tabla1 = Arial.render('Tabla 1', False, BLACK)
     screen.blit(tabla1, (LINE_WIDTH, HEIGHT + 2 * LINE_WIDTH))
@@ -475,8 +477,8 @@ def displayWinner(player):
 
             mesaj = Arial.render(f'Player {player % 2 + 1} won', False, BLACK)
             coords = [
-                (WIDTH / 2 - mesaj.get_width() - LINE_WIDTH, HEIGHT + 2 * LINE_WIDTH),
-                (WIDTH / 2 + LINE_WIDTH, HEIGHT + 2 * LINE_WIDTH)
+                (WIDTH / 2 - mesaj.get_width() - LINE_WIDTH * 2, HEIGHT + 2 * LINE_WIDTH),
+                (WIDTH / 2 + LINE_WIDTH * 2, HEIGHT + 2 * LINE_WIDTH)
             ]
             screen.blit(mesaj, coords[table])
 
