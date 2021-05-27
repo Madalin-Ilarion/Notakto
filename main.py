@@ -522,6 +522,7 @@ while True:
             if event.key == pygame.K_r:
                 restart()
                 player = 1
+                set_caption(player)
                 table_winner_displayed = [False, False]
                 game_over = False
 
